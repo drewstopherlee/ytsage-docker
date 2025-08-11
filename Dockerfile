@@ -19,7 +19,7 @@ RUN chmod +x /start.sh
 
 RUN set-cont-env APP_NAME "YTSage"
 RUN set-cont-env APP_VERSION "4.6.0"
-RUN set-cont-env DOCKER_IMAGE_VERSION "0.2.0"
+RUN set-cont-env DOCKER_IMAGE_VERSION "0.2.1"
 
 # Expose ports for noVNC and VNC
 EXPOSE 5800 5900

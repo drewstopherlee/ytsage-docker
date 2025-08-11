@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     python3 python3-pip python3-setuptools \
     xvfb fluxbox x11vnc wget net-tools \
     novnc websockify supervisor \
-    libegl1-mesa libgl1-mesa-glx libxcb-cursor0 libx11-xcb1 libxrender1 libxext6 libxi6 libxtst6 libxfixes3 libxkbcommon0 \
+    libxkbcommon0 libxcb-cursor0 libx11-xcb1 libglu1-mesa libxrender1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxtst6 libxrandr2 libxss1 libxinerama1 libxext6 libegl1-mesa libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies (adjust if you have requirements.txt)

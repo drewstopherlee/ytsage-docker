@@ -22,6 +22,9 @@ WORKDIR /app
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
+# Serve noVNC at root
+RUN ln -sf /usr/share/novnc/vnc.html /usr/share/novnc/index.html
+
 # Expose ports for noVNC and VNC
 EXPOSE 8080 5900
 

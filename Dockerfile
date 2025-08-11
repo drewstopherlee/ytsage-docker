@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     x11vnc \
     libxcb-cursor0 \
     libegl1-mesa \
-    libgl1-mesa-glx
+    libgl1-mesa-glx \
     python3-pyqt5 \
     ffmpeg \
     libegl1 \

@@ -3,8 +3,10 @@ FROM jlesage/baseimage-gui:ubuntu-22.04-v4
 # Install required packages
 RUN apt-get update && apt-get install -y \
     python3 python3-pip python3-setuptools wget net-tools yt-dlp ffmpeg \
-    libxcb-cursor0 libx11-xcb1 libxrender1 libxcomposite1 libxdamage1 \
-    libxfixes3 libxi6 libxtst6 libxrandr2 libxss1 libxinerama1 libglib2.0-0 libgl1-mesa-glx
+    libxcb-cursor0 libx11-xcb1 libxcb1 libxcb-render0 libxcb-shape0 libxcb-xfixes0 \
+    libxcb-keysyms1 libxcb-image0 libxcb-icccm4 libxcb-sync1 libxcb-xinerama0 \
+    libxcb-randr0 libxcb-glx0 libxrender1 libxext6 libxi6 libxkbcommon0 \
+    libgl1-mesa-glx libegl1-mesa
 
 # Install Python dependencies (adjust if you have requirements.txt)
 COPY requirements.txt /app/requirements.txt

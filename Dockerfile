@@ -2,7 +2,8 @@ FROM jlesage/baseimage-gui:ubuntu-22.04-v4
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
-    python3 python3-pip python3-setuptools wget net-tools yt-dlp
+    python3 python3-pip python3-setuptools wget net-tools yt-dlp ffmpeg \
+    xcb-cursor0 libxcb-cursor0
 
 # Install Python dependencies (adjust if you have requirements.txt)
 COPY requirements.txt /app/requirements.txt

@@ -17,4 +17,4 @@ x11vnc -display :99 -nopw -forever -shared -quiet -ncache 10 -rfbport 5900 &
 websockify --web=/usr/share/novnc 8080 localhost:5900 &
 
 # Start your Python app (replace with your actual command)
-/usr/bin/python3 main.py
+python3 main.py

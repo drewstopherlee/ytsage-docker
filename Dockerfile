@@ -1,40 +1,28 @@
-FROM python:3.11-slim
+FROM ubuntu:22.04
 
-# Install dependencies for PySide6, yt-dlp, ffmpeg, and VNC
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install required packages
 RUN apt-get update && apt-get install -y \
-    xvfb \
-    fluxbox \
-    x11vnc \
-    libxcb-cursor0 \
-    libegl1-mesa \
-    libgl1-mesa-glx \
-    python3-pyqt5 \
-    ffmpeg \
-    libegl1 \
-    libgl1 \
-    libglib2.0-0 \
-    x11-apps \
-    websockify \
+    python3 python3-pip python3-setuptools \
+    xvfb fluxbox x11vnc wget net-tools \
+    novnc websockify supervisor \
+    libegl1-mesa libgl1-mesa-glx libxcb-cursor0 libx11-xcb1 libxrender1 libxext6 libxi6 libxtst6 libxfixes3 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install noVNC
-RUN mkdir -p /opt/novnc \
-    && wget -qO- https://github.com/novnc/noVNC/archive/refs/tags/v1.4.0.tar.gz | tar xz --strip-components=1 -C /opt/novnc \
-    && ln -s /opt/novnc/vnc_lite.html /opt/novnc/index.html
+# Install Python dependencies (adjust if you have requirements.txt)
+COPY requirements.txt /app/requirements.txt
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
-# Set working directory
+# Copy your app files
+COPY . /app
 WORKDIR /app
 
-# Copy app files
-COPY . /app
-
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Start script
+# Copy start script
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-EXPOSE 8080
+# Expose ports for noVNC and VNC
+EXPOSE 8080 5900
 
 CMD ["/start.sh"]

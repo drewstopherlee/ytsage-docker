@@ -2,6 +2,9 @@ FROM python:3.11-slim
 
 # Install dependencies for PySide6, yt-dlp, ffmpeg, and VNC
 RUN apt-get update && apt-get install -y \
+    libegl1 \
+    libgl1 \
+    libglib2.0-0 \
     ffmpeg \
     libgl1 \
     libx11-6 \

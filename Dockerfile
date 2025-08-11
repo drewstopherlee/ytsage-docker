@@ -1,4 +1,4 @@
-FROM jlesage/baseimage-gui:ubuntu-v22.04
+FROM jlesage/baseimage-gui:ubuntu-22.04-v4
 
 # Install required packages
 RUN apt-get update && apt-get install -y \

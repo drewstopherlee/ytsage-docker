@@ -6,8 +6,8 @@ name: Build and Push Docker Image
 # documentation.
 
 on:
-  push:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
   workflow_dispatch:
 
 env:
@@ -90,23 +90,23 @@ jobs:
       #     cosign sign --yes ghcr.io/${{ github.repository }}:${{ steps.date.outputs.date_tag }}
       #     cosign sign --yes ghcr.io/${{ github.repository }}:latest
 
-  cleanup:
-    name: Prune GHCR Images
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-    steps:
-      - name: Sleep for 2 minutes
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '2m'
-      - name: Remove old and untagged GHCR versions
-        uses: snok/container-retention-policy@v3.0.0
-        with:
-          account: user
-          token: ${{ secrets.GITHUB_TOKEN }}
-          cut-off: 1m  # how old package versions need to be before being considered for deletion
-          image-names: ${{ github.repository }}  # just the repo part, not full ghcr.io/org/repo
-          tag-selection: untagged
-          timestamp-to-use: created_at
+  # cleanup:
+  #   name: Prune GHCR Images
+  #   needs: build-and-push
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     packages: write
+  #   steps:
+  #     - name: Sleep for 2 minutes
+  #       uses: jakejarvis/wait-action@master
+  #       with:
+  #         time: '2m'
+  #     - name: Remove old and untagged GHCR versions
+  #       uses: snok/container-retention-policy@v3.0.0
+  #       with:
+  #         account: user
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         cut-off: 1m  # how old package versions need to be before being considered for deletion
+  #         image-names: ${{ github.repository }}  # just the repo part, not full ghcr.io/org/repo
+  #         tag-selection: untagged
+  #         timestamp-to-use: created_at

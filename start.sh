@@ -14,7 +14,7 @@ sleep 3
 x11vnc -display :99 -nopw -forever -shared -quiet -ncache 10 -rfbport 5900 &
 
 # Start noVNC websockify proxy on port 8080
-/usr/share/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 8080 --web /usr/share/novnc &
+websockify --web=/usr/share/novnc 8080 localhost:5900 &
 
 # Start your Python app (replace with your actual command)
 /usr/bin/python3 main.py
